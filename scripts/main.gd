@@ -6,18 +6,17 @@ extends Control
 # var b = "text"
 var OSType = OS.get_name()
 
-var bound_directory = "/home/jelly/Documents/Bound/bound.x86_64"
-
 var posts = []
 
+var settingsResource = preload("res://settings.tres")
 var postScene = preload("res://post.tscn")
 
+var bound_directory = "/home/jelly/Documents/Bound/bound.x86_64"
 
 onready var base_location = get_node("MarginContainer/VBoxContainer/Middle/Patch/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/ScrollContainer/PanelContainer/MarginContainer2/VBoxContainer")
 #onready var title = base_location.get_node("Title")
 onready var description = base_location.get_node("Description")
 onready var patch = base_location.get_node("Patch")
-
 
 onready var postParentNode = get_node("MarginContainer/VBoxContainer/Middle/Info/HBoxContainer/MarginContainer/VBoxContainer/MarginContainer2/ScrollContainer/VBoxContainer")
 
@@ -27,17 +26,21 @@ func _ready():
 	# make background transparent!
 	get_tree().get_root().set_transparent_background(true)
 	
+	applySettings()
 	# onstart request data!
 	$BLOGRequest.connect("request_completed", self, "_on_request_completed")
 	$PATCHRequest.request("https://www.kingjellycycle.com/Bound_Test.json")
 	# request Blog Feed!
 	$BLOGRequest.request("https://www.kingjellycycle.com/feed.xml")
 
+func applySettings():
+	pass
+
+
+## Launch Game
 func _on_Button_pressed():
 	launchBound(OSType)
 	
-
-## Launch Game
 func launchBound(OSsystem): 
 	OS.execute(bound_directory,[""],false)
 

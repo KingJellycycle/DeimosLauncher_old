@@ -1,0 +1,11 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://scripts/settings_class.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+first_run = false
+operating_system = 0
+bound_directory = "/home/jelly/Documents/Bound/bound.x86_64"
+darkTheme = false
+Fancy = false
