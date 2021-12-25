@@ -1,8 +1,9 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://main-theme.tres" type="Theme" id=1]
 [ext_resource path="res://main.gd" type="Script" id=2]
 [ext_resource path="res://ViewManager.gd" type="Script" id=3]
+[ext_resource path="res://Topbar.gd" type="Script" id=4]
 [ext_resource path="res://fonts/roboto_light_dyn_TitleSize.tres" type="DynamicFont" id=5]
 [ext_resource path="res://assets/icon/jellylauncher.png" type="Texture" id=6]
 
@@ -65,6 +66,7 @@ __meta__ = {
 margin_right = 1024.0
 margin_bottom = 50.0
 rect_min_size = Vector2( 0, 50 )
+mouse_filter = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Top"]
 margin_right = 1024.0
@@ -72,85 +74,29 @@ margin_bottom = 50.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Space" type="MarginContainer" parent="MarginContainer/VBoxContainer/Top/HBoxContainer"]
-margin_right = 50.0
-margin_bottom = 50.0
-size_flags_vertical = 3
-
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Top/HBoxContainer/Space"]
-margin_right = 50.0
+[node name="TitleBar" type="MarginContainer" parent="MarginContainer/VBoxContainer/Top/HBoxContainer"]
+margin_right = 936.0
 margin_bottom = 50.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+script = ExtResource( 4 )
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/Top/HBoxContainer/Space/HBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/Top/HBoxContainer/TitleBar"]
 margin_right = 50.0
 margin_bottom = 50.0
+mouse_filter = 1
+size_flags_horizontal = 0
 custom_constants/margin_right = 0
 custom_constants/margin_top = 0
 custom_constants/margin_left = 0
 custom_constants/margin_bottom = 0
 
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/Top/HBoxContainer/Space/HBoxContainer/MarginContainer"]
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/Top/HBoxContainer/TitleBar/MarginContainer"]
 margin_right = 50.0
 margin_bottom = 50.0
 rect_min_size = Vector2( 50, 50 )
 texture = ExtResource( 6 )
 expand = true
-
-[node name="TitleComponents" type="MarginContainer" parent="MarginContainer/VBoxContainer/Top/HBoxContainer"]
-visible = false
-margin_left = 54.0
-margin_right = 241.0
-margin_bottom = 50.0
-size_flags_vertical = 3
-custom_constants/margin_right = 5
-custom_constants/margin_top = 5
-custom_constants/margin_left = 5
-custom_constants/margin_bottom = 5
-
-[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer/Top/HBoxContainer/TitleComponents"]
-margin_left = 5.0
-margin_top = 5.0
-margin_right = 182.0
-margin_bottom = 45.0
-
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/Top/HBoxContainer/TitleComponents/PanelContainer"]
-margin_right = 177.0
-margin_bottom = 40.0
-custom_constants/margin_right = 5
-custom_constants/margin_top = 5
-custom_constants/margin_left = 5
-custom_constants/margin_bottom = 5
-
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Top/HBoxContainer/TitleComponents/PanelContainer/MarginContainer"]
-margin_left = 5.0
-margin_top = 5.0
-margin_right = 172.0
-margin_bottom = 35.0
-alignment = 1
-
-[node name="Title" type="Label" parent="MarginContainer/VBoxContainer/Top/HBoxContainer/TitleComponents/PanelContainer/MarginContainer/HBoxContainer"]
-margin_top = 6.0
-margin_right = 163.0
-margin_bottom = 24.0
-custom_fonts/font = ExtResource( 5 )
-text = "Launcher"
-align = 1
-valign = 1
-uppercase = true
-
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/Top/HBoxContainer/TitleComponents/PanelContainer/MarginContainer/HBoxContainer"]
-margin_left = 167.0
-margin_right = 167.0
-margin_bottom = 30.0
-
-[node name="Space2" type="MarginContainer" parent="MarginContainer/VBoxContainer/Top/HBoxContainer"]
-margin_left = 54.0
-margin_right = 936.0
-margin_bottom = 50.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
 
 [node name="ExitComponents" type="MarginContainer" parent="MarginContainer/VBoxContainer/Top/HBoxContainer"]
 margin_left = 940.0
@@ -606,6 +552,7 @@ size_flags_vertical = 3
 
 [node name="HTTPRequest" type="HTTPRequest" parent="."]
 
+[connection signal="gui_input" from="MarginContainer/VBoxContainer/Top/HBoxContainer/TitleBar" to="MarginContainer/VBoxContainer/Top/HBoxContainer/TitleBar" method="_on_TitleBar_gui_input"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Top/HBoxContainer/ExitComponents/PanelContainer/MarginContainer/HBoxContainer/Minimize" to="." method="_on_Minimize_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Top/HBoxContainer/ExitComponents/PanelContainer/MarginContainer/HBoxContainer/Exit" to="." method="_on_Exit_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Bottom/MarginContainer/Button" to="." method="_on_Button_pressed"]
