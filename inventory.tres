@@ -1,0 +1,167 @@
+[gd_resource type="Resource" load_steps=23 format=2]
+
+[ext_resource path="res://Scripts/Items/baseItem.gd" type="Script" id=1]
+[ext_resource path="res://Data/Items/testItem.tres" type="Resource" id=2]
+[ext_resource path="res://Scripts/Items/baseEquipment.gd" type="Script" id=3]
+[ext_resource path="res://Data/Items/BaseItems/Equipment/Weapons/Scythe.tres" type="Resource" id=4]
+[ext_resource path="res://Data/Items/BaseItems/Ticket.tres" type="Resource" id=5]
+[ext_resource path="res://Scripts/Entity/Resources/inventory/inventory.gd" type="Script" id=6]
+
+[sub_resource type="Resource" id=16]
+script = ExtResource( 1 )
+name = "Orb of Power"
+description = "~~~"
+stackable = true
+max_stack_size = 32
+type = 0
+
+[sub_resource type="Resource" id=17]
+script = ExtResource( 1 )
+name = "Ticket"
+description = "Your number one ticket to everything you could ever imagine! Isn't that great!?"
+stackable = true
+max_stack_size = 5
+type = 0
+
+[sub_resource type="CubeMesh" id=1]
+size = Vector3( 0.5, 2, 0.5 )
+
+[sub_resource type="OpenSimplexNoise" id=2]
+seed = 1
+
+[sub_resource type="NoiseTexture" id=3]
+noise = SubResource( 2 )
+
+[sub_resource type="Resource" id=18]
+script = ExtResource( 3 )
+name = "Generic Scythe"
+description = "Just a Generic Scythe"
+stackable = false
+max_stack_size = 1
+type = 3
+texture = SubResource( 3 )
+mesh = SubResource( 1 )
+weaponType = 4
+attackPower = 2
+level = 1
+experience = 2.0
+
+[sub_resource type="Resource" id=19]
+script = ExtResource( 1 )
+name = "Ticket"
+description = "Your number one ticket to everything you could ever imagine! Isn't that great!?"
+stackable = true
+max_stack_size = 5
+type = 0
+
+[sub_resource type="CubeMesh" id=20]
+size = Vector3( 0.5, 2, 0.5 )
+
+[sub_resource type="OpenSimplexNoise" id=21]
+seed = 1
+
+[sub_resource type="NoiseTexture" id=22]
+noise = SubResource( 21 )
+
+[sub_resource type="Resource" id=23]
+script = ExtResource( 3 )
+name = "Generic Scythe"
+description = "Just a Generic Scythe"
+stackable = false
+max_stack_size = 1
+type = 3
+texture = SubResource( 22 )
+mesh = SubResource( 20 )
+weaponType = 4
+attackPower = 2
+level = 1
+experience = 2.0
+
+[sub_resource type="CubeMesh" id=24]
+size = Vector3( 0.5, 2, 0.5 )
+
+[sub_resource type="OpenSimplexNoise" id=25]
+seed = 1
+
+[sub_resource type="NoiseTexture" id=26]
+noise = SubResource( 25 )
+
+[sub_resource type="Resource" id=27]
+script = ExtResource( 3 )
+name = "Generic Scythe"
+description = "Just a Generic Scythe"
+stackable = false
+max_stack_size = 1
+type = 3
+texture = SubResource( 26 )
+mesh = SubResource( 24 )
+weaponType = 4
+attackPower = 2
+level = 1
+experience = 2.0
+
+[sub_resource type="Resource" id=28]
+script = ExtResource( 1 )
+name = "Ticket"
+description = "Your number one ticket to everything you could ever imagine! Isn't that great!?"
+stackable = true
+max_stack_size = 5
+type = 0
+
+[resource]
+script = ExtResource( 6 )
+_inventory = [ null, null, null, null, null, null, {
+"item_reference": SubResource( 16 ),
+"quantity": 1
+}, null, null, null, null, {
+"item_reference": ExtResource( 2 ),
+"quantity": 1
+}, null, null, null, {
+"item_reference": SubResource( 17 ),
+"quantity": 1
+}, {
+"item_reference": SubResource( 18 ),
+"quantity": 1
+}, {
+"item_reference": ExtResource( 2 ),
+"quantity": 1
+}, {
+"item_reference": SubResource( 19 ),
+"quantity": 1
+}, {
+"item_reference": SubResource( 23 ),
+"quantity": 1
+}, {
+"item_reference": ExtResource( 2 ),
+"quantity": 1
+}, {
+"item_reference": ExtResource( 4 ),
+"quantity": 1
+}, null, {
+"item_reference": ExtResource( 5 ),
+"quantity": 1
+}, null, null, null, {
+"item_reference": SubResource( 27 ),
+"quantity": 1
+}, {
+"item_reference": SubResource( 28 ),
+"quantity": 1
+}, {
+"item_reference": ExtResource( 2 ),
+"quantity": 1
+}, {
+"item_reference": ExtResource( 5 ),
+"quantity": 1
+}, {
+"item_reference": ExtResource( 4 ),
+"quantity": 1
+} ]
+_equipmentSlots = {
+"Amulet": null,
+"Catalyst": null,
+"Familar": null,
+"Necklace": null,
+"Tomb": null,
+"Weapon": null
+}
+maxSize = 32

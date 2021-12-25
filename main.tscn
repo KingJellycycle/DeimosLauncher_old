@@ -1,0 +1,615 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://main-theme.tres" type="Theme" id=1]
+[ext_resource path="res://main.gd" type="Script" id=2]
+[ext_resource path="res://ViewManager.gd" type="Script" id=3]
+[ext_resource path="res://fonts/roboto_light_dyn_TitleSize.tres" type="DynamicFont" id=5]
+[ext_resource path="res://assets/icon/jellylauncher.png" type="Texture" id=6]
+
+[sub_resource type="StyleBoxFlat" id=7]
+bg_color = Color( 0, 0, 0, 0.0980392 )
+
+[sub_resource type="StyleBoxFlat" id=8]
+bg_color = Color( 0, 0, 0, 0.196078 )
+
+[sub_resource type="StyleBoxEmpty" id=4]
+
+[sub_resource type="StyleBoxEmpty" id=5]
+
+[sub_resource type="StyleBoxEmpty" id=6]
+
+[sub_resource type="StyleBoxFlat" id=9]
+bg_color = Color( 0.335938, 0.335938, 0.335938, 0.294118 )
+corner_radius_top_left = 5
+corner_radius_bottom_left = 5
+
+[node name="Main" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 1 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/margin_left = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Background" type="Panel" parent="MarginContainer"]
+margin_right = 1024.0
+margin_bottom = 600.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+margin_right = 1024.0
+margin_bottom = 600.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/separation = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Top" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+margin_right = 1024.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 0, 50 )
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Top"]
+margin_right = 1024.0
+margin_bottom = 50.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Space" type="MarginContainer" parent="MarginContainer/VBoxContainer/Top/HBoxContainer"]
+margin_right = 50.0
+margin_bottom = 50.0
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Top/HBoxContainer/Space"]
+margin_right = 50.0
+margin_bottom = 50.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/Top/HBoxContainer/Space/HBoxContainer"]
+margin_right = 50.0
+margin_bottom = 50.0
+custom_constants/margin_right = 0
+custom_constants/margin_top = 0
+custom_constants/margin_left = 0
+custom_constants/margin_bottom = 0
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/Top/HBoxContainer/Space/HBoxContainer/MarginContainer"]
+margin_right = 50.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 50, 50 )
+texture = ExtResource( 6 )
+expand = true
+
+[node name="TitleComponents" type="MarginContainer" parent="MarginContainer/VBoxContainer/Top/HBoxContainer"]
+visible = false
+margin_left = 54.0
+margin_right = 241.0
+margin_bottom = 50.0
+size_flags_vertical = 3
+custom_constants/margin_right = 5
+custom_constants/margin_top = 5
+custom_constants/margin_left = 5
+custom_constants/margin_bottom = 5
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer/Top/HBoxContainer/TitleComponents"]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 182.0
+margin_bottom = 45.0
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/Top/HBoxContainer/TitleComponents/PanelContainer"]
+margin_right = 177.0
+margin_bottom = 40.0
+custom_constants/margin_right = 5
+custom_constants/margin_top = 5
+custom_constants/margin_left = 5
+custom_constants/margin_bottom = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Top/HBoxContainer/TitleComponents/PanelContainer/MarginContainer"]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 172.0
+margin_bottom = 35.0
+alignment = 1
+
+[node name="Title" type="Label" parent="MarginContainer/VBoxContainer/Top/HBoxContainer/TitleComponents/PanelContainer/MarginContainer/HBoxContainer"]
+margin_top = 6.0
+margin_right = 163.0
+margin_bottom = 24.0
+custom_fonts/font = ExtResource( 5 )
+text = "Launcher"
+align = 1
+valign = 1
+uppercase = true
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/Top/HBoxContainer/TitleComponents/PanelContainer/MarginContainer/HBoxContainer"]
+margin_left = 167.0
+margin_right = 167.0
+margin_bottom = 30.0
+
+[node name="Space2" type="MarginContainer" parent="MarginContainer/VBoxContainer/Top/HBoxContainer"]
+margin_left = 54.0
+margin_right = 936.0
+margin_bottom = 50.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ExitComponents" type="MarginContainer" parent="MarginContainer/VBoxContainer/Top/HBoxContainer"]
+margin_left = 940.0
+margin_right = 1024.0
+margin_bottom = 50.0
+custom_constants/margin_right = 5
+custom_constants/margin_top = 5
+custom_constants/margin_left = 5
+custom_constants/margin_bottom = 5
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer/Top/HBoxContainer/ExitComponents"]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 79.0
+margin_bottom = 45.0
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/Top/HBoxContainer/ExitComponents/PanelContainer"]
+margin_right = 74.0
+margin_bottom = 40.0
+custom_constants/margin_right = 5
+custom_constants/margin_top = 5
+custom_constants/margin_left = 5
+custom_constants/margin_bottom = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Top/HBoxContainer/ExitComponents/PanelContainer/MarginContainer"]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 69.0
+margin_bottom = 35.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 2
+
+[node name="Minimize" type="Button" parent="MarginContainer/VBoxContainer/Top/HBoxContainer/ExitComponents/PanelContainer/MarginContainer/HBoxContainer"]
+margin_right = 30.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 30, 0 )
+custom_colors/font_color_hover = Color( 0.180392, 0.180392, 0.180392, 1 )
+custom_colors/font_color_pressed = Color( 0.317647, 0.317647, 0.317647, 1 )
+custom_styles/hover = SubResource( 7 )
+custom_styles/pressed = SubResource( 8 )
+custom_styles/focus = SubResource( 4 )
+custom_styles/disabled = SubResource( 5 )
+custom_styles/normal = SubResource( 6 )
+text = "_"
+
+[node name="Exit" type="Button" parent="MarginContainer/VBoxContainer/Top/HBoxContainer/ExitComponents/PanelContainer/MarginContainer/HBoxContainer"]
+margin_left = 34.0
+margin_right = 64.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 30, 0 )
+custom_colors/font_color_hover = Color( 0.180392, 0.180392, 0.180392, 1 )
+custom_colors/font_color_pressed = Color( 0.317647, 0.317647, 0.317647, 1 )
+custom_styles/hover = SubResource( 7 )
+custom_styles/pressed = SubResource( 8 )
+custom_styles/focus = SubResource( 4 )
+custom_styles/disabled = SubResource( 5 )
+custom_styles/normal = SubResource( 6 )
+text = "X"
+
+[node name="Middle" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
+margin_top = 50.0
+margin_right = 1024.0
+margin_bottom = 550.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource( 3 )
+
+[node name="Info" type="PanelContainer" parent="MarginContainer/VBoxContainer/Middle"]
+margin_right = 1024.0
+margin_bottom = 500.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/Middle/Info"]
+margin_right = 1024.0
+margin_bottom = 500.0
+custom_constants/margin_right = 15
+custom_constants/margin_top = 15
+custom_constants/margin_left = 15
+custom_constants/margin_bottom = 15
+
+[node name="MarginContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/Middle/Info/HBoxContainer"]
+margin_left = 15.0
+margin_top = 15.0
+margin_right = 1009.0
+margin_bottom = 485.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Title" type="Label" parent="MarginContainer/VBoxContainer/Middle/Info/HBoxContainer/MarginContainer"]
+margin_right = 994.0
+margin_bottom = 18.0
+custom_fonts/font = ExtResource( 5 )
+text = "Bound"
+align = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/Middle/Info/HBoxContainer/MarginContainer"]
+margin_top = 22.0
+margin_right = 994.0
+margin_bottom = 470.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/Middle/Info/HBoxContainer/MarginContainer/VBoxContainer"]
+margin_right = 994.0
+margin_bottom = 10.0
+rect_min_size = Vector2( 0, 10 )
+
+[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/VBoxContainer/Middle/Info/HBoxContainer/MarginContainer/VBoxContainer"]
+margin_top = 14.0
+margin_right = 994.0
+margin_bottom = 448.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/margin_right = 40
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/VBoxContainer/Middle/Info/HBoxContainer/MarginContainer/VBoxContainer/MarginContainer2"]
+margin_right = 954.0
+margin_bottom = 434.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Description" type="Label" parent="MarginContainer/VBoxContainer/Middle/Info/HBoxContainer/MarginContainer/VBoxContainer/MarginContainer2/ScrollContainer"]
+margin_right = 942.0
+margin_bottom = 679.0
+size_flags_horizontal = 3
+size_flags_vertical = 7
+text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Neque volutpat ac tincidunt vitae semper. Nulla aliquet porttitor lacus luctus accumsan. Posuere ac ut consequat semper viverra nam libero. Dui nunc mattis enim ut tellus. Sit amet consectetur adipiscing elit pellentesque habitant morbi tristique senectus. Tincidunt praesent semper feugiat nibh sed pulvinar proin gravida. Eros in cursus turpis massa. Fermentum odio eu feugiat pretium nibh ipsum consequat nisl vel. Congue eu consequat ac felis donec et odio pellentesque diam.
+
+Tempus imperdiet nulla malesuada pellentesque elit eget gravida. Lacus viverra vitae congue eu consequat ac felis. At urna condimentum mattis pellentesque id. Morbi tincidunt ornare massa eget egestas purus. Ipsum faucibus vitae aliquet nec ullamcorper sit. Aliquam faucibus purus in massa. Nulla aliquet enim tortor at auctor urna nunc. Tellus in hac habitasse platea dictumst vestibulum rhoncus est pellentesque. Venenatis a condimentum vitae sapien pellentesque habitant morbi tristique. Tortor condimentum lacinia quis vel eros donec ac. Dolor purus non enim praesent elementum facilisis. Ullamcorper morbi tincidunt ornare massa. Et pharetra pharetra massa massa. Senectus et netus et malesuada fames ac turpis. Elit sed vulputate mi sit amet.
+
+Et tortor at risus viverra adipiscing. Malesuada fames ac turpis egestas integer. Nisl nisi scelerisque eu ultrices vitae auctor eu augue. Laoreet id donec ultrices tincidunt arcu non sodales. Eros donec ac odio tempor orci. Posuere urna nec tincidunt praesent semper feugiat nibh. Velit dignissim sodales ut eu sem integer vitae. Tristique nulla aliquet enim tortor at auctor urna nunc id. Non blandit massa enim nec dui. Porttitor eget dolor morbi non arcu risus quis varius. Quis hendrerit dolor magna eget est lorem ipsum dolor sit. Ac tincidunt vitae semper quis lectus. In hendrerit gravida rutrum quisque non tellus orci ac. Tempor orci eu lobortis elementum nibh tellus molestie.
+
+Enim tortor at auctor urna. A iaculis at erat pellentesque adipiscing. Nam at lectus urna duis convallis. Consequat ac felis donec et odio pellentesque diam volutpat. Porttitor rhoncus dolor purus non enim praesent. Hendrerit dolor magna eget est lorem ipsum dolor. Malesuada fames ac turpis egestas integer eget. Tortor id aliquet lectus proin. Egestas maecenas pharetra convallis posuere morbi leo urna molestie at. Morbi quis commodo odio aenean sed adipiscing diam. Sagittis eu volutpat odio facilisis mauris sit. Nisi vitae suscipit tellus mauris.
+
+Duis convallis convallis tellus id interdum. Et malesuada fames ac turpis egestas sed tempus urna. In fermentum et sollicitudin ac orci phasellus egestas tellus. Imperdiet nulla malesuada pellentesque elit eget. Nisl condimentum id venenatis a. Sed ullamcorper morbi tincidunt ornare massa eget egestas purus. Laoreet non curabitur gravida arcu ac. Pellentesque elit eget gravida cum sociis natoque penatibus. Quam lacus suspendisse faucibus interdum posuere lorem ipsum dolor. Ultrices dui sapien eget mi proin sed libero. Morbi tristique senectus et netus et malesuada fames ac."
+autowrap = true
+
+[node name="Patch" type="PanelContainer" parent="MarginContainer/VBoxContainer/Middle"]
+visible = false
+margin_right = 1024.0
+margin_bottom = 500.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Middle/Patch"]
+margin_right = 1024.0
+margin_bottom = 500.0
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/Middle/Patch/HBoxContainer"]
+margin_right = 1024.0
+margin_bottom = 500.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/margin_right = 15
+custom_constants/margin_top = 15
+custom_constants/margin_left = 15
+custom_constants/margin_bottom = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/Middle/Patch/HBoxContainer/MarginContainer"]
+margin_left = 15.0
+margin_top = 15.0
+margin_right = 1009.0
+margin_bottom = 485.0
+
+[node name="Title" type="Label" parent="MarginContainer/VBoxContainer/Middle/Patch/HBoxContainer/MarginContainer/VBoxContainer"]
+margin_right = 994.0
+margin_bottom = 18.0
+custom_fonts/font = ExtResource( 5 )
+text = "Patches"
+align = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/Middle/Patch/HBoxContainer/MarginContainer/VBoxContainer"]
+margin_top = 22.0
+margin_right = 994.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 0, 10 )
+
+[node name="Description" type="Label" parent="MarginContainer/VBoxContainer/Middle/Patch/HBoxContainer/MarginContainer/VBoxContainer"]
+margin_top = 36.0
+margin_right = 994.0
+margin_bottom = 55.0
+text = "asdasdasdsadasdad"
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Middle/Patch/HBoxContainer/MarginContainer/VBoxContainer"]
+margin_top = 59.0
+margin_right = 994.0
+margin_bottom = 78.0
+text = "Patch Notes:"
+
+[node name="Patch" type="Label" parent="MarginContainer/VBoxContainer/Middle/Patch/HBoxContainer/MarginContainer/VBoxContainer"]
+margin_top = 82.0
+margin_right = 994.0
+margin_bottom = 101.0
+
+[node name="Settings" type="PanelContainer" parent="MarginContainer/VBoxContainer/Middle"]
+visible = false
+margin_right = 1024.0
+margin_bottom = 500.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Middle/Settings"]
+margin_right = 1024.0
+margin_bottom = 500.0
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/Middle/Settings/HBoxContainer"]
+margin_right = 1024.0
+margin_bottom = 500.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/margin_right = 15
+custom_constants/margin_top = 15
+custom_constants/margin_left = 15
+custom_constants/margin_bottom = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/Middle/Settings/HBoxContainer/MarginContainer"]
+margin_left = 15.0
+margin_top = 15.0
+margin_right = 1009.0
+margin_bottom = 485.0
+
+[node name="Title" type="Label" parent="MarginContainer/VBoxContainer/Middle/Settings/HBoxContainer/MarginContainer/VBoxContainer"]
+margin_right = 994.0
+margin_bottom = 18.0
+custom_fonts/font = ExtResource( 5 )
+text = "Settings"
+align = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Middle/Settings/HBoxContainer/MarginContainer/VBoxContainer"]
+margin_top = 22.0
+margin_right = 994.0
+margin_bottom = 470.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/Middle/Settings/HBoxContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+margin_right = 328.0
+margin_bottom = 448.0
+rect_min_size = Vector2( 150, 0 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Middle/Settings/HBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+margin_right = 328.0
+margin_bottom = 19.0
+text = "General:"
+align = 1
+
+[node name="CheckButton" type="CheckButton" parent="MarginContainer/VBoxContainer/Middle/Settings/HBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+margin_top = 23.0
+margin_right = 157.0
+margin_bottom = 55.0
+rect_min_size = Vector2( 150, 0 )
+size_flags_horizontal = 0
+text = "Do this thing"
+align = 1
+
+[node name="CheckButton2" type="CheckButton" parent="MarginContainer/VBoxContainer/Middle/Settings/HBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+margin_top = 59.0
+margin_right = 157.0
+margin_bottom = 91.0
+rect_min_size = Vector2( 150, 0 )
+size_flags_horizontal = 0
+text = "Do this thing"
+align = 1
+
+[node name="CheckButton3" type="CheckButton" parent="MarginContainer/VBoxContainer/Middle/Settings/HBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+margin_top = 95.0
+margin_right = 157.0
+margin_bottom = 127.0
+rect_min_size = Vector2( 150, 0 )
+size_flags_horizontal = 0
+text = "Do this thing"
+align = 1
+
+[node name="CheckButton4" type="CheckButton" parent="MarginContainer/VBoxContainer/Middle/Settings/HBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+margin_top = 131.0
+margin_right = 157.0
+margin_bottom = 163.0
+rect_min_size = Vector2( 150, 0 )
+size_flags_horizontal = 0
+text = "Do this thing"
+align = 1
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/VBoxContainer/Middle/Settings/HBoxContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+margin_left = 332.0
+margin_right = 661.0
+margin_bottom = 448.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Middle/Settings/HBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2"]
+margin_right = 329.0
+margin_bottom = 19.0
+text = "Resources:"
+align = 1
+
+[node name="Label2" type="Label" parent="MarginContainer/VBoxContainer/Middle/Settings/HBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2"]
+margin_top = 23.0
+margin_right = 329.0
+margin_bottom = 42.0
+text = "Game Installation Location:"
+
+[node name="LineEdit" type="LineEdit" parent="MarginContainer/VBoxContainer/Middle/Settings/HBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2"]
+margin_top = 46.0
+margin_right = 329.0
+margin_bottom = 70.0
+placeholder_text = "Game Directory (example: \"./games/\")"
+caret_blink = true
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="MarginContainer/VBoxContainer/Middle/Settings/HBoxContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+margin_left = 665.0
+margin_right = 994.0
+margin_bottom = 448.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Middle/Settings/HBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer3"]
+margin_right = 329.0
+margin_bottom = 19.0
+text = "Extra:"
+align = 1
+
+[node name="Bottom" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+margin_top = 550.0
+margin_right = 1024.0
+margin_bottom = 600.0
+rect_min_size = Vector2( 0, 50 )
+
+[node name="MarginContainer3" type="MarginContainer" parent="MarginContainer/VBoxContainer/Bottom"]
+margin_right = 150.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 150, 50 )
+custom_constants/margin_right = 5
+custom_constants/margin_top = 5
+custom_constants/margin_left = 5
+custom_constants/margin_bottom = 5
+
+[node name="OptionButton" type="OptionButton" parent="MarginContainer/VBoxContainer/Bottom/MarginContainer3"]
+visible = false
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 145.0
+margin_bottom = 45.0
+text = "Bound"
+align = 1
+items = [ "Bound", null, false, 0, null, "Item 1", null, false, 1, null ]
+selected = 0
+
+[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/VBoxContainer/Bottom"]
+margin_left = 154.0
+margin_right = 910.0
+margin_bottom = 50.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/Bottom"]
+margin_left = 914.0
+margin_right = 1024.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 100, 50 )
+custom_constants/margin_right = 5
+custom_constants/margin_top = 5
+custom_constants/margin_left = 5
+custom_constants/margin_bottom = 5
+
+[node name="Button" type="Button" parent="MarginContainer/VBoxContainer/Bottom/MarginContainer"]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 105.0
+margin_bottom = 45.0
+rect_min_size = Vector2( 100, 0 )
+text = "Play"
+
+[node name="Sidebar" type="VBoxContainer" parent="MarginContainer"]
+margin_left = 974.0
+margin_right = 1024.0
+margin_bottom = 600.0
+mouse_filter = 2
+size_flags_horizontal = 8
+
+[node name="TopSpacer" type="MarginContainer" parent="MarginContainer/Sidebar"]
+margin_right = 50.0
+margin_bottom = 227.0
+rect_min_size = Vector2( 0, 100 )
+mouse_filter = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/Sidebar"]
+margin_top = 231.0
+margin_right = 50.0
+margin_bottom = 369.0
+size_flags_vertical = 5
+custom_styles/panel = SubResource( 9 )
+
+[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/Sidebar/PanelContainer"]
+margin_right = 50.0
+margin_bottom = 138.0
+rect_min_size = Vector2( 50, 0 )
+size_flags_vertical = 3
+custom_constants/margin_right = 5
+custom_constants/margin_top = 5
+custom_constants/margin_left = 5
+custom_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/Sidebar/PanelContainer/MarginContainer2"]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 45.0
+margin_bottom = 133.0
+alignment = 1
+
+[node name="Info" type="Button" parent="MarginContainer/Sidebar/PanelContainer/MarginContainer2/VBoxContainer"]
+margin_right = 40.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 0, 40 )
+text = "I"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Patch" type="Button" parent="MarginContainer/Sidebar/PanelContainer/MarginContainer2/VBoxContainer"]
+margin_top = 44.0
+margin_right = 40.0
+margin_bottom = 84.0
+rect_min_size = Vector2( 0, 40 )
+text = "P"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Settings" type="Button" parent="MarginContainer/Sidebar/PanelContainer/MarginContainer2/VBoxContainer"]
+margin_top = 88.0
+margin_right = 40.0
+margin_bottom = 128.0
+rect_min_size = Vector2( 0, 40 )
+text = "S"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BottomSpacer" type="MarginContainer" parent="MarginContainer/Sidebar"]
+margin_top = 373.0
+margin_right = 50.0
+margin_bottom = 600.0
+rect_min_size = Vector2( 0, 100 )
+mouse_filter = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="HTTPRequest" type="HTTPRequest" parent="."]
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Top/HBoxContainer/ExitComponents/PanelContainer/MarginContainer/HBoxContainer/Minimize" to="." method="_on_Minimize_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Top/HBoxContainer/ExitComponents/PanelContainer/MarginContainer/HBoxContainer/Exit" to="." method="_on_Exit_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Bottom/MarginContainer/Button" to="." method="_on_Button_pressed"]
+[connection signal="pressed" from="MarginContainer/Sidebar/PanelContainer/MarginContainer2/VBoxContainer/Info" to="MarginContainer/VBoxContainer/Middle" method="_on_Info_pressed"]
+[connection signal="pressed" from="MarginContainer/Sidebar/PanelContainer/MarginContainer2/VBoxContainer/Patch" to="MarginContainer/VBoxContainer/Middle" method="_on_Patch_pressed"]
+[connection signal="pressed" from="MarginContainer/Sidebar/PanelContainer/MarginContainer2/VBoxContainer/Settings" to="MarginContainer/VBoxContainer/Middle" method="_on_Settings_pressed"]
+[connection signal="request_completed" from="HTTPRequest" to="." method="_on_HTTPRequest_request_completed"]
