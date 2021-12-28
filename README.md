@@ -9,5 +9,9 @@ Having features like:
 
 It won't be anything super fancy, but something that works!
 
+## Before use
+This project is incomplete and doesn't function, the plan is to start work on launching applicatons from a directory (which it does) and then head into downloading said "game"
+
+
 ## License jibber-jabber!
 This project will be licensed under MIT :D
