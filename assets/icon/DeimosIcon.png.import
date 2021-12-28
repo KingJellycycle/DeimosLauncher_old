@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/jellylauncher.png-769c2a4d885d531d2d2a2b9428929872.stex"
+path="res://.import/DeimosIcon.png-920696620bd94f12945664c2dd9122fb.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/icon/jellylauncher.png"
-dest_files=[ "res://.import/jellylauncher.png-769c2a4d885d531d2d2a2b9428929872.stex" ]
+source_file="res://assets/icon/DeimosIcon.png"
+dest_files=[ "res://.import/DeimosIcon.png-920696620bd94f12945664c2dd9122fb.stex" ]
 
 [params]
 

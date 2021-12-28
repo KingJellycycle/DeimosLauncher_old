@@ -20,9 +20,11 @@ _global_script_class_icons={
 
 [application]
 
-config/name="GameLauncher"
+config/name="Deimos"
+config/description="Deimos is a launcher for games by King Jellycycle!
+Featuring patch notes, news and more!"
 run/main_scene="res://main.tscn"
-config/icon="res://assets/icon/jellylauncher.png"
+config/icon="res://assets/icon/DeimosIcon.png"
 
 [display]
 
