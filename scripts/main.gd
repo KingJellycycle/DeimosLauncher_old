@@ -20,6 +20,13 @@ onready var patch = base_location.get_node("Patch")
 
 onready var postParentNode = get_node("MarginContainer/VBoxContainer/Middle/Info/HBoxContainer/MarginContainer/VBoxContainer/MarginContainer2/ScrollContainer/VBoxContainer")
 
+
+var darkThemeEnabled = false
+var darkTheme = preload("res://dark-theme.tres")
+var lightTheme = preload("res://light-theme.tres")
+
+var settingsInfo = preload("res://settings.tres")
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	OS.set_window_title("Launcher - " + OSType)
@@ -27,6 +34,7 @@ func _ready():
 	get_tree().get_root().set_transparent_background(true)
 	
 	applySettings()
+	updateSettings()
 	# onstart request data!
 	$BLOGRequest.connect("request_completed", self, "_on_request_completed")
 	$PATCHRequest.request("https://www.kingjellycycle.com/Bound_Test.json")
@@ -34,7 +42,31 @@ func _ready():
 	$BLOGRequest.request("https://www.kingjellycycle.com/feed.xml")
 
 func applySettings():
-	pass
+	if settingsInfo.darkTheme:
+		set_theme(darkTheme)
+	else:
+		set_theme(lightTheme)
+	
+	#settingsInfo.darkTheme = !settingsInfo.darkTheme
+
+func updateSettings():
+	var settingsNode = get_node("MarginContainer/VBoxContainer/Middle/Settings/HBoxContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer")
+	var GeneralNode = settingsNode.get_node("GeneralSettings/MarginContainer/VBoxContainer")
+	var ResourcesNode = settingsNode.get_node("Resources/MarginContainer/VBoxContainer2")
+	
+	# Get/Set General Node data
+	var darkthemeNode = GeneralNode.get_node("ThemeToggle")
+	var BGupdateNode = GeneralNode.get_node("BGUpdates")
+	var fancyNode = GeneralNode.get_node("FancyPerson")
+	
+	darkthemeNode.pressed = settingsInfo.darkTheme
+	BGupdateNode.pressed = settingsInfo.BackgroundUpdates
+	fancyNode.pressed = settingsInfo.Fancy
+	
+	# Get/Set Resources Node data
+	var game_directoryNode = ResourcesNode.get_node("bound_directory_LE")
+	
+	game_directoryNode.text = settingsInfo.bound_directory
 
 
 ## Launch Game
@@ -46,6 +78,7 @@ func launchBound(OSsystem):
 
 ## Window Operations
 func _on_Exit_pressed():
+	ResourceSaver.save("res://settings.tres", settingsInfo)
 	get_tree().quit()
 	
 func _on_Minimize_pressed():
@@ -127,3 +160,25 @@ func _on_PATCHRequest_request_completed(result, response_code, headers, body):
 	#title.text = json.result.title
 	description.text = json.result.description
 	patch.text = json.result.patch
+
+
+func _on_SettingsSave_pressed():
+	var settingsNode = get_node("MarginContainer/VBoxContainer/Middle/Settings/HBoxContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer")
+	var GeneralNode = settingsNode.get_node("GeneralSettings/MarginContainer/VBoxContainer")
+	var ResourcesNode = settingsNode.get_node("Resources/MarginContainer/VBoxContainer2")
+	
+	# Get/Set General Node data
+	var darkthemeNode = GeneralNode.get_node("ThemeToggle")
+	var BGupdateNode = GeneralNode.get_node("BGUpdates")
+	var fancyNode = GeneralNode.get_node("FancyPerson")
+	
+	settingsInfo.darkTheme = darkthemeNode.pressed
+	settingsInfo.BackgroundUpdates = BGupdateNode.pressed
+	settingsInfo.Fancy = fancyNode.pressed
+	
+	# Get/Set Resources Node data
+	var game_directoryNode = ResourcesNode.get_node("bound_directory_LE")
+	
+	settingsInfo.bound_directory = game_directoryNode.text
+	
+	applySettings()
