@@ -11,15 +11,23 @@ var posts = []
 var settingsResource = preload("res://settings.tres")
 var postScene = preload("res://post.tscn")
 
-var bound_directory = "/home/jelly/Documents/Bound/bound.x86_64"
+#var bound_directory = "/home/jelly/Documents/Bound/bound.x86_64"
 
+var executableTypes = [
+	"Bound.exe",
+	"Bound.x86_64",
+	"Bound.app"
+]
+
+## PATCH STUFF
 onready var base_location = get_node("MarginContainer/VBoxContainer/Middle/Patch/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/ScrollContainer/PanelContainer/MarginContainer2/VBoxContainer")
 #onready var title = base_location.get_node("Title")
+onready var patchContainer = get_node("MarginContainer/VBoxContainer/Middle/Patch/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/ScrollContainer/PanelContainer/MarginContainer2")
+
 onready var description = base_location.get_node("Description")
 onready var patch = base_location.get_node("Patch")
 
 onready var postParentNode = get_node("MarginContainer/VBoxContainer/Middle/Info/HBoxContainer/MarginContainer/VBoxContainer/MarginContainer2/ScrollContainer/VBoxContainer")
-
 
 var darkThemeEnabled = false
 var darkTheme = preload("res://dark-theme.tres")
@@ -27,26 +35,27 @@ var lightTheme = preload("res://light-theme.tres")
 
 var settingsInfo = preload("res://settings.tres")
 
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	OS.set_window_title("Launcher - " + OSType)
+	OS.set_window_title("Deimos - " + OSType)
 	# make background transparent!
 	get_tree().get_root().set_transparent_background(true)
 	
 	applySettings()
 	updateSettings()
-	# onstart request data!
-	$BLOGRequest.connect("request_completed", self, "_on_request_completed")
-	$PATCHRequest.request("https://www.kingjellycycle.com/Bound_Test.json")
-	# request Blog Feed!
-	$BLOGRequest.request("https://www.kingjellycycle.com/feed.xml")
+
+	# Request Bound Patch Notes!
+	$HTTPSRequestNodes/PATCHRequest.request("https://www.kingjellycycle.com/Bound_Test.json")
+	# Request Blog Feed!
+	$HTTPSRequestNodes/BLOGRequest.request("https://www.kingjellycycle.com/feed.xml")
 
 func applySettings():
 	if settingsInfo.darkTheme:
 		set_theme(darkTheme)
 	else:
-		set_theme(lightTheme)
-	
+		set_theme(lightTheme)	
 	#settingsInfo.darkTheme = !settingsInfo.darkTheme
 
 func updateSettings():
@@ -64,17 +73,26 @@ func updateSettings():
 	fancyNode.pressed = settingsInfo.Fancy
 	
 	# Get/Set Resources Node data
-	var game_directoryNode = ResourcesNode.get_node("bound_directory_LE")
+	var game_directoryNode = ResourcesNode.get_node("HBoxContainer/bound_directory_LE")
 	
 	game_directoryNode.text = settingsInfo.bound_directory
 
-
 ## Launch Game
 func _on_Button_pressed():
-	launchBound(OSType)
+	launchBound()
 	
-func launchBound(OSsystem): 
-	OS.execute(bound_directory,[""],false)
+func launchBound():
+	var executeType
+	
+	if OSType == "X11":
+		executeType = executableTypes[1]
+	elif OSType == "Windows":
+		executeType = executableTypes[0]
+	elif OSType == "OSX":
+		executeType = executableTypes[2]
+	#print(settingsInfo.bound_directory + "/" + executeType)
+	
+	OS.execute(settingsInfo.bound_directory + "/" + executeType,[""],false)
 
 ## Window Operations
 func _on_Exit_pressed():
@@ -84,7 +102,7 @@ func _on_Exit_pressed():
 func _on_Minimize_pressed():
 	OS.set_window_minimized(true)
 
-
+## HTTPS Operations
 func _on_BLOGRequest_request_completed(result, response_code, headers, body):
 	var in_entry_node = false
 	var in_title_node = false
@@ -151,7 +169,8 @@ func _on_BLOGRequest_request_completed(result, response_code, headers, body):
 		instance.updatePost(i[0],i[1],i[2])
 		#if in_category_node:
 		#	print("category-data: " + node_data)
-
+	
+	postParentNode.get_node("LoadingInfoContainer").visible = false
 
 func _on_PATCHRequest_request_completed(result, response_code, headers, body):
 	var json = JSON.parse(body.get_string_from_utf8())
@@ -160,8 +179,11 @@ func _on_PATCHRequest_request_completed(result, response_code, headers, body):
 	#title.text = json.result.title
 	description.text = json.result.description
 	patch.text = json.result.patch
+	
+	patchContainer.get_node("VBoxContainer").visible = true
+	patchContainer.get_node("LoadingInfoContainer").visible = false
 
-
+## Settings Operations
 func _on_SettingsSave_pressed():
 	var settingsNode = get_node("MarginContainer/VBoxContainer/Middle/Settings/HBoxContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer")
 	var GeneralNode = settingsNode.get_node("GeneralSettings/MarginContainer/VBoxContainer")
@@ -177,8 +199,16 @@ func _on_SettingsSave_pressed():
 	settingsInfo.Fancy = fancyNode.pressed
 	
 	# Get/Set Resources Node data
-	var game_directoryNode = ResourcesNode.get_node("bound_directory_LE")
+	var game_directoryNode = ResourcesNode.get_node("HBoxContainer/bound_directory_LE")
 	
 	settingsInfo.bound_directory = game_directoryNode.text
 	
 	applySettings()
+
+func _on_bound_locate_pressed():
+	get_node("PopupDialogs/BoundFileDialog").popup_centered()
+
+func _on_BoundFileDialog_dir_selected(dir):
+	settingsInfo.bound_directory = dir 
+	updateSettings()
+	

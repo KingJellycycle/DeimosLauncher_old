@@ -6,7 +6,7 @@
 script = ExtResource( 1 )
 first_run = false
 operating_system = 0
-bound_directory = ""
+bound_directory = "/home/jelly/Documents/Bound"
 BackgroundUpdates = true
 darkTheme = true
 Fancy = true

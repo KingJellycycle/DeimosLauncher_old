@@ -6,7 +6,7 @@ var dragging_start_pos = Vector2()
 
 func _on_TitleBar_gui_input(event):
 	if event is InputEventMouseButton:
-		if event.get_button_index() == 1:
+		if event.get_button_index() == 1:	
 			follow = !follow
 			dragging_start_pos = get_local_mouse_position()
 
