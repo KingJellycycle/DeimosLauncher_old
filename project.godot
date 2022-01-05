@@ -26,6 +26,12 @@ Featuring patch notes, news and more!"
 run/main_scene="res://main.tscn"
 config/icon="res://assets/icon/DeimosIcon.png"
 
+[autoload]
+
+CheckGameVersion="*res://scripts/functions/checkGameVersion.gd"
+RequestUpdate="*res://scripts/functions/requestUpdate.gd"
+DeimosData="*res://scripts/functions/deimosData.gd"
+
 [display]
 
 window/size/borderless=true

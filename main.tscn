@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://light-theme.tres" type="Theme" id=1]
 [ext_resource path="res://scripts/main.gd" type="Script" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://fonts/roboto_light_dyn_TitleSize.tres" type="DynamicFont" id=5]
 [ext_resource path="res://assets/icon/DeimosIcon.png" type="Texture" id=6]
 [ext_resource path="res://LoadingInfoContainer.tscn" type="PackedScene" id=7]
+[ext_resource path="res://scripts/subUI/ProgressLabel.gd" type="Script" id=8]
 
 [sub_resource type="StyleBoxFlat" id=7]
 bg_color = Color( 1, 0, 0.301961, 0.0980392 )
@@ -112,6 +113,7 @@ texture = ExtResource( 6 )
 expand = true
 
 [node name="Title" type="Label" parent="MarginContainer/VBoxContainer/Top/HBoxContainer/TitleBar/HBoxContainer"]
+visible = false
 margin_left = 54.0
 margin_top = 11.0
 margin_right = 161.0
@@ -570,6 +572,7 @@ margin_bottom = 600.0
 rect_min_size = Vector2( 0, 50 )
 
 [node name="MarginContainer3" type="MarginContainer" parent="MarginContainer/VBoxContainer/Bottom"]
+visible = false
 margin_right = 150.0
 margin_bottom = 50.0
 rect_min_size = Vector2( 150, 50 )
@@ -590,11 +593,50 @@ items = [ "Bound", null, false, 0, null, "Item 1", null, false, 1, null ]
 selected = 0
 
 [node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/VBoxContainer/Bottom"]
-margin_left = 154.0
 margin_right = 910.0
 margin_bottom = 50.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+custom_constants/margin_right = 5
+custom_constants/margin_top = 5
+custom_constants/margin_left = 5
+custom_constants/margin_bottom = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Bottom/MarginContainer2"]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 905.0
+margin_bottom = 45.0
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/Bottom/MarginContainer2/HBoxContainer"]
+margin_right = 900.0
+margin_bottom = 40.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/separation = 0
+alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/Bottom/MarginContainer2/HBoxContainer/VBoxContainer"]
+margin_top = 3.0
+margin_right = 900.0
+margin_bottom = 22.0
+
+[node name="ProgressLabel" type="Label" parent="MarginContainer/VBoxContainer/Bottom/MarginContainer2/HBoxContainer/VBoxContainer/MarginContainer"]
+margin_right = 900.0
+margin_bottom = 19.0
+text = "100mb / 100mb"
+align = 2
+script = ExtResource( 8 )
+
+[node name="ProgressBar" type="ProgressBar" parent="MarginContainer/VBoxContainer/Bottom/MarginContainer2/HBoxContainer/VBoxContainer"]
+margin_top = 22.0
+margin_right = 900.0
+margin_bottom = 37.0
+rect_min_size = Vector2( 0, 15 )
+size_flags_horizontal = 3
+size_flags_vertical = 4
+percent_visible = false
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/Bottom"]
 margin_left = 914.0
@@ -691,11 +733,16 @@ mouse_filter = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="HTTPSRequestNodes" type="Control" parent="."]
+[node name="HTTPRequestNodes" type="Control" parent="."]
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="BLOGRequest" type="HTTPRequest" parent="HTTPSRequestNodes"]
+[node name="BLOGRequest" type="HTTPRequest" parent="HTTPRequestNodes"]
 
-[node name="PATCHRequest" type="HTTPRequest" parent="HTTPSRequestNodes"]
+[node name="PATCHRequest" type="HTTPRequest" parent="HTTPRequestNodes"]
+
+[node name="UPDATERequest" type="HTTPRequest" parent="HTTPRequestNodes"]
 
 [node name="PopupDialogs" type="Control" parent="."]
 __meta__ = {
@@ -727,7 +774,8 @@ __meta__ = {
 [connection signal="pressed" from="MarginContainer/Sidebar/PanelContainer/MarginContainer2/VBoxContainer/Info" to="MarginContainer/VBoxContainer/Middle" method="_on_Info_pressed"]
 [connection signal="pressed" from="MarginContainer/Sidebar/PanelContainer/MarginContainer2/VBoxContainer/Patch" to="MarginContainer/VBoxContainer/Middle" method="_on_Patch_pressed"]
 [connection signal="pressed" from="MarginContainer/Sidebar/PanelContainer/MarginContainer2/VBoxContainer/Settings" to="MarginContainer/VBoxContainer/Middle" method="_on_Settings_pressed"]
-[connection signal="request_completed" from="HTTPSRequestNodes/BLOGRequest" to="." method="_on_BLOGRequest_request_completed"]
-[connection signal="request_completed" from="HTTPSRequestNodes/PATCHRequest" to="." method="_on_PATCHRequest_request_completed"]
+[connection signal="request_completed" from="HTTPRequestNodes/BLOGRequest" to="." method="_on_BLOGRequest_request_completed"]
+[connection signal="request_completed" from="HTTPRequestNodes/PATCHRequest" to="." method="_on_PATCHRequest_request_completed"]
+[connection signal="request_completed" from="HTTPRequestNodes/UPDATERequest" to="." method="_on_BOUNDPATCHRequest_request_completed"]
 [connection signal="confirmed" from="PopupDialogs/BoundFileDialog" to="." method="_on_BoundFileDialog_confirmed"]
 [connection signal="dir_selected" from="PopupDialogs/BoundFileDialog" to="." method="_on_BoundFileDialog_dir_selected"]

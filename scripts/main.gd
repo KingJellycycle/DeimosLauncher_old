@@ -19,13 +19,15 @@ var executableTypes = [
 	"Bound.app"
 ]
 
+var readyComplete = false
+var updateData = false
+
 ## PATCH STUFF
 onready var base_location = get_node("MarginContainer/VBoxContainer/Middle/Patch/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/ScrollContainer/PanelContainer/MarginContainer2/VBoxContainer")
 #onready var title = base_location.get_node("Title")
 onready var patchContainer = get_node("MarginContainer/VBoxContainer/Middle/Patch/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/ScrollContainer/PanelContainer/MarginContainer2")
 
-onready var description = base_location.get_node("Description")
-onready var patch = base_location.get_node("Patch")
+
 
 onready var postParentNode = get_node("MarginContainer/VBoxContainer/Middle/Info/HBoxContainer/MarginContainer/VBoxContainer/MarginContainer2/ScrollContainer/VBoxContainer")
 
@@ -36,7 +38,6 @@ var lightTheme = preload("res://light-theme.tres")
 var settingsInfo = preload("res://settings.tres")
 
 
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	OS.set_window_title("Deimos - " + OSType)
@@ -45,11 +46,17 @@ func _ready():
 	
 	applySettings()
 	updateSettings()
+	
+	RequestUpdate.updateGame()
+	
+	readyComplete = true
+	#requestWebData()
 
-	# Request Bound Patch Notes!
-	$HTTPSRequestNodes/PATCHRequest.request("https://www.kingjellycycle.com/Bound_Test.json")
-	# Request Blog Feed!
-	$HTTPSRequestNodes/BLOGRequest.request("https://www.kingjellycycle.com/feed.xml")
+func _process(_delta):
+	if readyComplete and updateData == false:
+		DeimosData.updateAll()
+		updateData = true
+
 
 func applySettings():
 	if settingsInfo.darkTheme:
@@ -77,6 +84,7 @@ func updateSettings():
 	
 	game_directoryNode.text = settingsInfo.bound_directory
 
+	
 ## Launch Game
 func _on_Button_pressed():
 	launchBound()
@@ -176,12 +184,24 @@ func _on_PATCHRequest_request_completed(result, response_code, headers, body):
 	var json = JSON.parse(body.get_string_from_utf8())
 	print(json.result)
 	
-	#title.text = json.result.title
+	var title = base_location.get_node("Title")
+	var description = base_location.get_node("Description")
+	var patch = base_location.get_node("Patch")
+	
+	title.text = String("Version: " + String(json.result.version))
 	description.text = json.result.description
 	patch.text = json.result.patch
 	
 	patchContainer.get_node("VBoxContainer").visible = true
 	patchContainer.get_node("LoadingInfoContainer").visible = false
+	
+
+func _on_BOUNDPATCHRequest_request_completed(result, response_code, headers, body):
+	#print(body)
+	var file = File.new()
+	file.open("res://bound-patch.bck", File.WRITE)
+	file.store_buffer(body)
+	file.close()		
 
 ## Settings Operations
 func _on_SettingsSave_pressed():
@@ -211,4 +231,3 @@ func _on_bound_locate_pressed():
 func _on_BoundFileDialog_dir_selected(dir):
 	settingsInfo.bound_directory = dir 
 	updateSettings()
-	
