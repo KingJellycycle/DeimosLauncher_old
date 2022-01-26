@@ -6,6 +6,8 @@ extends Label
 # var b = "text"
 
 onready var UPDATERequest = get_tree().root.get_node("Main/HTTPRequestNodes/UPDATERequest")
+onready var progressBarNode = get_parent().get_node("ProgressBar")
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -19,6 +21,8 @@ func _process(delta):
 	
 	var amount = String(downloadedBytes) + " Bytes / " + String(bodySize) + " Bytes"
 	
-	var precent = int(downloadedBytes*100/bodySize)
+	var percent = int(downloadedBytes*100/bodySize)
 	
-	text = String(amount) + " (" + String(precent) + "%)"
+	text = String(amount) + " (" + String(percent) + "%)"
+	
+	progressBarNode.value = percent

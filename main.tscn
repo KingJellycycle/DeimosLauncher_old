@@ -1,6 +1,6 @@
 [gd_scene load_steps=16 format=2]
 
-[ext_resource path="res://light-theme.tres" type="Theme" id=1]
+[ext_resource path="res://dark-theme.tres" type="Theme" id=1]
 [ext_resource path="res://scripts/main.gd" type="Script" id=2]
 [ext_resource path="res://scripts/ViewManager.gd" type="Script" id=3]
 [ext_resource path="res://scripts/Topbar.gd" type="Script" id=4]
@@ -30,8 +30,8 @@ corner_radius_bottom_left = 5
 
 [sub_resource type="StyleBoxFlat" id=9]
 bg_color = Color( 0.335938, 0.335938, 0.335938, 0.294118 )
-corner_radius_top_left = 5
-corner_radius_bottom_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
 
 [node name="Main" type="Control"]
 anchor_right = 1.0
@@ -235,10 +235,11 @@ margin_right = 994.0
 margin_bottom = 438.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_constants/margin_right = 40
+custom_constants/margin_left = 40
 
 [node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/VBoxContainer/Middle/Info/HBoxContainer/MarginContainer/VBoxContainer/MarginContainer2"]
-margin_right = 954.0
+margin_left = 40.0
+margin_right = 994.0
 margin_bottom = 424.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/Middle/Info/HBoxContainer/MarginContainer/VBoxContainer/MarginContainer2/ScrollContainer"]
@@ -246,6 +247,9 @@ margin_right = 954.0
 margin_bottom = 424.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="LoadingInfoContainer" parent="MarginContainer/VBoxContainer/Middle/Info/HBoxContainer/MarginContainer/VBoxContainer/MarginContainer2/ScrollContainer/VBoxContainer" instance=ExtResource( 7 )]
 
@@ -283,32 +287,33 @@ margin_right = 994.0
 margin_bottom = 470.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_constants/margin_right = 50
+custom_constants/margin_left = 40
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/Middle/Patch/MarginContainer/VBoxContainer/MarginContainer"]
-margin_right = 944.0
+margin_left = 40.0
+margin_right = 994.0
 margin_bottom = 438.0
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/Middle/Patch/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer"]
-margin_right = 944.0
+margin_right = 954.0
 margin_bottom = 10.0
 rect_min_size = Vector2( 0, 10 )
 
 [node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/VBoxContainer/Middle/Patch/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer"]
 margin_top = 14.0
-margin_right = 944.0
+margin_right = 954.0
 margin_bottom = 438.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="PanelContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer/Middle/Patch/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/ScrollContainer"]
-margin_right = 944.0
+margin_right = 954.0
 margin_bottom = 424.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/VBoxContainer/Middle/Patch/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/ScrollContainer/PanelContainer"]
-margin_right = 944.0
+margin_right = 954.0
 margin_bottom = 424.0
 custom_constants/margin_right = 15
 custom_constants/margin_top = 15
@@ -319,7 +324,7 @@ custom_constants/margin_bottom = 15
 visible = false
 margin_left = 15.0
 margin_top = 15.0
-margin_right = 929.0
+margin_right = 939.0
 margin_bottom = 409.0
 
 [node name="Title" type="Label" parent="MarginContainer/VBoxContainer/Middle/Patch/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/ScrollContainer/PanelContainer/MarginContainer2/VBoxContainer"]
@@ -341,7 +346,7 @@ text = "asdada"
 [node name="LoadingInfoContainer" parent="MarginContainer/VBoxContainer/Middle/Patch/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/ScrollContainer/PanelContainer/MarginContainer2" instance=ExtResource( 7 )]
 margin_left = 15.0
 margin_top = 15.0
-margin_right = 929.0
+margin_right = 939.0
 margin_bottom = 409.0
 
 [node name="Settings" type="PanelContainer" parent="MarginContainer/VBoxContainer/Middle"]
@@ -390,10 +395,11 @@ margin_right = 994.0
 margin_bottom = 470.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_constants/margin_right = 50
+custom_constants/margin_left = 40
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Middle/Settings/HBoxContainer/MarginContainer/VBoxContainer/MarginContainer"]
-margin_right = 944.0
+margin_left = 40.0
+margin_right = 994.0
 margin_bottom = 424.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -617,14 +623,10 @@ size_flags_vertical = 3
 custom_constants/separation = 0
 alignment = 1
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/Bottom/MarginContainer2/HBoxContainer/VBoxContainer"]
+[node name="ProgressLabel" type="Label" parent="MarginContainer/VBoxContainer/Bottom/MarginContainer2/HBoxContainer/VBoxContainer"]
 margin_top = 3.0
 margin_right = 900.0
 margin_bottom = 22.0
-
-[node name="ProgressLabel" type="Label" parent="MarginContainer/VBoxContainer/Bottom/MarginContainer2/HBoxContainer/VBoxContainer/MarginContainer"]
-margin_right = 900.0
-margin_bottom = 19.0
 text = "100mb / 100mb"
 align = 2
 script = ExtResource( 8 )
@@ -657,11 +659,10 @@ rect_min_size = Vector2( 100, 0 )
 text = "Play"
 
 [node name="Sidebar" type="VBoxContainer" parent="MarginContainer"]
-margin_left = 974.0
-margin_right = 1024.0
+margin_right = 50.0
 margin_bottom = 600.0
 mouse_filter = 2
-size_flags_horizontal = 8
+size_flags_horizontal = 0
 
 [node name="TopSpacer" type="MarginContainer" parent="MarginContainer/Sidebar"]
 margin_right = 50.0

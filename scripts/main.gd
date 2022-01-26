@@ -199,7 +199,8 @@ func _on_PATCHRequest_request_completed(result, response_code, headers, body):
 func _on_BOUNDPATCHRequest_request_completed(result, response_code, headers, body):
 	#print(body)
 	var file = File.new()
-	file.open("res://bound-patch.bck", File.WRITE)
+	
+	file.open("res://Download_Data/bound-patch.bck", File.WRITE)
 	file.store_buffer(body)
 	file.close()		
 
